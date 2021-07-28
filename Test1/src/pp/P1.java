@@ -42,12 +42,17 @@ public class P1 {
 				.filter(n -> queryList.stream().anyMatch(o -> o.compareToIgnoreCase(n.substring(0, o.length())) == 0))
 				.collect(Collectors.toList());
 
-		nueva.forEach(n -> System.out.println("fail: " + n));
+		for (String w : queryList) {
 
-		for (String w : repository) {
-
-			nueva2 = queryList.stream().filter(n -> n.compareToIgnoreCase(w.substring(0, n.length())) == 0)
+			nueva2 = repository.stream().filter(n -> n.substring(0, w.length()).compareToIgnoreCase(w) == 0)
 					.collect(Collectors.toList());
+
+			if (nueva2.size() >= 3) {
+
+				nueva2 = nueva2.subList(0, 3);
+			}
+
+			res.add(nueva2);
 
 			nueva2.forEach(n -> System.out.println(n));
 			System.out.println("-----");
