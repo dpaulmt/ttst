@@ -16,8 +16,10 @@ public class P1 {
 		repository.add("mobile");
 		repository.add("moneypot");
 		repository.add("mouse");
+		repository.add("mouseBall");
 
-		String query = "mouse";
+
+		String query = "Mouse";
 
 		arr(repository, query);
 	}
