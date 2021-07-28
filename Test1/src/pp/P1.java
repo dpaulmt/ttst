@@ -1,7 +1,9 @@
 package pp;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class P1 {
 
@@ -17,6 +19,7 @@ public class P1 {
 
 		String query = "mouse";
 
+		arr(repository, query);
 	}
 
 	static List<List<String>> arr(List<String> repository, String query) {
@@ -24,11 +27,22 @@ public class P1 {
 		List<List<String>> res = new ArrayList<List<String>>();
 
 		List<String> queryList = endQueryList(query);
-		
-		
+
+		List<String> nueva = new ArrayList<String>();
+
+//		nueva = repository.stream().filter(n -> queryList.stream().anyMatch(o -> o.compareToIgnoreCase(n) == 0))
+//				.collect(Collectors.toList());
+
+		Collections.sort(repository);
+
+//		repository.forEach(n -> System.out.println(n));
+
+		nueva = repository.stream().filter(n -> queryList.stream().anyMatch(o -> o.compareToIgnoreCase(n) == 0))
+				.collect(Collectors.toList());
+
+		nueva.forEach(n -> System.out.println(n));
 
 		return null;
-		
 
 	}
 
@@ -38,7 +52,8 @@ public class P1 {
 
 		for (int i = 2; i <= query.length(); i++) {
 
-			queryList.add(query.substring(0, 2));
+//			System.out.println(query.substring(0, i));
+			queryList.add(query.substring(0, i));
 		}
 
 		return queryList;
