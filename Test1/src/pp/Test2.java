@@ -9,10 +9,11 @@ public class Test2 {
 
 		ArrayList<Gasto> lista = new ArrayList<Gasto>();
 
-		lista.add(new Gasto("A", 80));
-		lista.add(new Gasto("B", 50));
-		lista.add(new Gasto("C", 70));
-		lista.add(new Gasto("D", 95));
+		lista.add(new Gasto("A", 80, "uno"));
+		lista.add(new Gasto("B", 50, "uno"));
+		lista.add(new Gasto("C", 70, "uno"));
+		lista.add(new Gasto("D", 95, "dos"));
+		lista.add(new Gasto("F", 95, "uno"));
 
 		double totalPago = 0;
 
@@ -30,9 +31,13 @@ public class Test2 {
 		double resultado = lista.stream().mapToDouble(gasto -> gasto.getImporte() * 1.21).filter(gasto -> gasto < 100)
 				.sum();
 
-		
-//		lista.stream().
 		System.out.println(resultado);
+
+		// allMatch
+		System.out.println(lista.stream().allMatch(n -> n.getClave().compareToIgnoreCase("uno") == 0));
+
+		// anyMatch si cualquiera coincide
+		System.out.println(lista.stream().anyMatch(n -> n.getClave().compareToIgnoreCase("dos") == 0));
 
 	}
 

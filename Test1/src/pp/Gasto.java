@@ -4,15 +4,25 @@ public class Gasto {
 
 	String nombre;
 	double importe;
+	String clave;
 
 	public Gasto() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Gasto(String nombre, double importe) {
+	public Gasto(String nombre, double importe, String clave) {
 		super();
 		this.nombre = nombre;
 		this.importe = importe;
+		this.clave = clave;
+	}
+
+	public String getClave() {
+		return clave;
+	}
+
+	public void setClave(String clave) {
+		this.clave = clave;
 	}
 
 	public String getNombre() {
