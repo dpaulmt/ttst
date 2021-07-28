@@ -18,6 +18,8 @@ public class P2 {
 
 		List<String> shoppingList = new ArrayList<String>();
 
+		shoppingList.add("pina");
+		shoppingList.add("mandarina");
 		shoppingList.add("orange");
 		shoppingList.add("apple");
 		shoppingList.add("apple");
@@ -26,14 +28,29 @@ public class P2 {
 		shoppingList.add("apple");
 		shoppingList.add("banana");
 
-		foo(codeList, shoppingList);
+		System.out.println(foo(codeList, shoppingList));
 	}
 
 	static boolean foo(List<String> codeList, List<String> shoppingList) {
 
 		List<String> codeListFixed = codeListFix(codeList);
-		
-		
+
+		for (int i = 0; i < shoppingList.size(); i++) {
+			List<String> shoppingListCutted = shoppingListCutted(shoppingList, i, codeListFixed.size());
+
+			if (shoppingListCutted != null) {
+
+				if (shoppingListCutted.equals(codeListFixed)) {
+
+					return true;
+				}
+
+			} else {
+
+				return false;
+			}
+
+		}
 
 		return false;
 	}
@@ -62,6 +79,26 @@ public class P2 {
 		}
 
 		return codeListFixed;
+	}
+
+	static List<String> shoppingListCutted(List<String> shoppingList, int i, int sizeCodeList) {
+
+		System.out.println(shoppingList.size() + "-" + i + "-" + sizeCodeList);
+
+		System.out.println(shoppingList.size() + ">=" + (i + sizeCodeList));
+
+		if (shoppingList.size() >= (i + sizeCodeList)) {
+
+			List<String> shoppingListCutted = shoppingList.subList(i, sizeCodeList);
+
+			shoppingListCutted.forEach(n -> System.out.println(n));
+
+			return shoppingListCutted;
+
+		}
+
+		return null;
+
 	}
 
 }
