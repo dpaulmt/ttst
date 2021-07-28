@@ -26,11 +26,42 @@ public class P2 {
 		shoppingList.add("apple");
 		shoppingList.add("banana");
 
+		foo(codeList, shoppingList);
 	}
 
 	static boolean foo(List<String> codeList, List<String> shoppingList) {
 
+		List<String> codeListFixed = codeListFix(codeList);
+		
+		
+
 		return false;
+	}
+
+	static List<String> codeListFix(List<String> codeList) {
+
+		List<String> codeListFixed = new ArrayList<String>();
+
+		for (String code : codeList) {
+
+			if (code.contains(" ")) {
+				String[] cutted = code.split(" ");
+
+				for (String s : cutted) {
+
+					codeListFixed.add(s);
+
+				}
+
+			} else {
+
+				codeListFixed.add(code);
+
+			}
+
+		}
+
+		return codeListFixed;
 	}
 
 }
