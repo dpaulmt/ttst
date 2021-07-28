@@ -47,10 +47,7 @@ public class P2 {
 
 				if (shoppingListCutted != null) {
 
-					if (shoppingListCutted.equals(codeListFixed)) {
-
-						return true;
-					}
+					return fruitResult(codeListFixed, shoppingListCutted);
 
 				} else {
 
@@ -103,6 +100,32 @@ public class P2 {
 		}
 
 		return null;
+
+	}
+
+	static boolean fruitResult(List<String> codeListFixed, List<String> shoppingListCutted) {
+
+		String anything = "anything";
+
+		if (codeListFixed.contains(anything)) {
+
+			for (int i = 0; i < codeListFixed.size(); i++) {
+
+				if (codeListFixed.get(i).compareToIgnoreCase(anything) == 0) {
+
+					shoppingListCutted.set(i, anything);
+
+				}
+			}
+
+		}
+
+		if (shoppingListCutted.equals(codeListFixed)) {
+
+			return true;
+		}
+
+		return false;
 
 	}
 
