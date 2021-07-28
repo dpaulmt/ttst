@@ -29,6 +29,7 @@ public class P1 {
 		List<String> queryList = endQueryList(query);
 
 		List<String> nueva = new ArrayList<String>();
+		List<String> nueva2 = new ArrayList<String>();
 
 //		nueva = repository.stream().filter(n -> queryList.stream().anyMatch(o -> o.compareToIgnoreCase(n) == 0))
 //				.collect(Collectors.toList());
@@ -37,10 +38,21 @@ public class P1 {
 
 //		repository.forEach(n -> System.out.println(n));
 
-		nueva = repository.stream().filter(n -> queryList.stream().anyMatch(o -> o.compareToIgnoreCase(n) == 0))
+		nueva = repository.stream()
+				.filter(n -> queryList.stream().anyMatch(o -> o.compareToIgnoreCase(n.substring(0, o.length())) == 0))
 				.collect(Collectors.toList());
 
-		nueva.forEach(n -> System.out.println(n));
+		nueva.forEach(n -> System.out.println("fail: " + n));
+
+		for (String w : repository) {
+
+			nueva2 = queryList.stream().filter(n -> n.compareToIgnoreCase(w.substring(0, n.length())) == 0)
+					.collect(Collectors.toList());
+
+			nueva2.forEach(n -> System.out.println(n));
+			System.out.println("-----");
+
+		}
 
 		return null;
 
@@ -52,8 +64,8 @@ public class P1 {
 
 		for (int i = 2; i <= query.length(); i++) {
 
-//			System.out.println(query.substring(0, i));
-			queryList.add(query.substring(0, i));
+//			System.out.println("mouse".length());
+			queryList.add(query.substring(0, i).toLowerCase());
 		}
 
 		return queryList;
