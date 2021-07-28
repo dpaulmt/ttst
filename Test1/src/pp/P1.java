@@ -16,12 +16,26 @@ public class P1 {
 		repository.add("mobile");
 		repository.add("moneypot");
 		repository.add("mouse");
-		repository.add("mouseBall");
-
+		repository.add("aerro");
 
 		String query = "Mouse";
 
-		arr(repository, query);
+		for (List<String> a : arr(repository, query)) {
+
+			a.forEach(n -> System.out.println(n));
+			System.out.println("***");
+
+		}
+
+		System.out.println("---------------");
+
+		for (List<String> a : arr2(repository, query)) {
+
+			a.forEach(n -> System.out.println(n));
+			System.out.println("***");
+
+		}
+
 	}
 
 	static List<List<String>> arr(List<String> repository, String query) {
@@ -30,7 +44,6 @@ public class P1 {
 
 		List<String> queryList = endQueryList(query);
 
-		List<String> nueva = new ArrayList<String>();
 		List<String> nueva2 = new ArrayList<String>();
 
 //		nueva = repository.stream().filter(n -> queryList.stream().anyMatch(o -> o.compareToIgnoreCase(n) == 0))
@@ -40,9 +53,9 @@ public class P1 {
 
 //		repository.forEach(n -> System.out.println(n));
 
-		nueva = repository.stream()
-				.filter(n -> queryList.stream().anyMatch(o -> o.compareToIgnoreCase(n.substring(0, o.length())) == 0))
-				.collect(Collectors.toList());
+//		nueva = repository.stream()
+//				.filter(n -> queryList.stream().anyMatch(o -> o.compareToIgnoreCase(n.substring(0, o.length())) == 0))
+//				.collect(Collectors.toList());
 
 		for (String w : queryList) {
 
@@ -56,12 +69,43 @@ public class P1 {
 
 			res.add(nueva2);
 
-			nueva2.forEach(n -> System.out.println(n));
-			System.out.println("-----");
+		}
+
+		return res;
+
+	}
+
+	static List<List<String>> arr2(List<String> repository, String query) {
+
+		List<List<String>> res = new ArrayList<List<String>>();
+
+		List<String> queryList = endQueryList(query);
+
+		Collections.sort(repository);
+
+		for (String que : queryList) {
+
+			List<String> nod = new ArrayList<String>();
+
+			for (String rep : repository) {
+
+				if (que.compareToIgnoreCase(rep.substring(0, que.length())) == 0) {
+
+					nod.add(rep);
+
+				}
+
+			}
+			if (nod.size() >= 3) {
+
+				nod = nod.subList(0, 3);
+
+			}
+			res.add(nod);
 
 		}
 
-		return null;
+		return res;
 
 	}
 
